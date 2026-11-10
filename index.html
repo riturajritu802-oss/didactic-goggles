@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komal's Secret World 💗</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#100711;color:white;
+ overflow-x:hidden;
+ background-image:radial-gradient(circle at 20% 20%,#8c145355,transparent 40%),radial-gradient(circle at 80% 80%,#d51b7950,transparent 40%);
+}
+button{cursor:pointer}
+.hidden{display:none!important}
+#particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}
+.particle{position:absolute;bottom:-40px;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+.screen{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:22px}
+.tag{font-size:10px;letter-spacing:4px;color:#ff9acb;margin-bottom:20px}
+.name{font-family:Georgia,serif;font-size:clamp(48px,14vw,78px);color:#ff9acb;text-shadow:0 0 15px #ff278d,0 0 40px #ff278d;animation:glow 2s infinite alternate}
+@keyframes glow{to{text-shadow:0 0 35px #ff278d,0 0 70px #ff278d}}
+.heart{font-size:75px;animation:beat 1.4s infinite;filter:drop-shadow(0 0 18px #ff278d)}
+@keyframes beat{50%{transform:scale(1.2)}}
+.sub{font-size:13px;line-height:2;color:#e8c5d8;max-width:330px;margin-top:15px}
+.btn{background:linear-gradient(135deg,#ff2995,#a50059);border:1px solid #ffadd3;color:white;padding:14px 26px;border-radius:35px;margin-top:24px;font-weight:bold;box-shadow:0 0 25px #ff299966;font-size:13px}
+.btn:active{transform:scale(.95)}
+.music{position:fixed;top:12px;right:12px;z-index:20;background:#351329;border:1px solid #ff9acb;color:#ffafd3;padding:10px 14px;border-radius:25px;font-size:11px}
+.main{max-width:650px;margin:auto;padding:65px 17px 30px;text-align:center}
+.heading{font-family:Georgia,serif;font-size:34px;color:#ffadd3;margin:10px 0 15px}
+.intro{font-size:13px;line-height:2;color:#e4c6d7}
+.card{background:linear-gradient(145deg,#41142f,#1d0c20);border:1px solid #ff9acb55;border-radius:22px;padding:23px 19px;margin:16px 0;text-align:left;box-shadow:0 10px 30px #0005}
+.card h3{color:#ffa6d0;font-size:16px;margin:10px 0}
+.card p{font-size:13px;line-height:2;color:#f0d9e6}
+.icon{font-size:30px}
+.section{color:#ff9acb;font-size:10px;letter-spacing:3px;margin:35px 0 10px}
+.giftbox{font-size:105px;cursor:pointer;animation:bounce 1.5s infinite;filter:drop-shadow(0 0 18px #ff2995)}
+@keyframes bounce{50%{transform:translateY(-12px) rotate(5deg)}}
+.giftArea{background:linear-gradient(145deg,#50153d,#210e28);padding:35px 15px;border:1px solid #ff9acb66;border-radius:25px;margin:25px 0;box-shadow:0 0 30px #ff299933}
+.letter{background:linear-gradient(145deg,#591b42,#28102c);border:1px solid #ff9acb88;border-radius:22px;padding:25px 20px;text-align:left;line-height:2;font-size:13px;color:#f5dce9;animation:appear 1s}
+.letter h3{font-family:Georgia,serif;color:#ffadd3;font-size:25px;margin-bottom:15px}
+.sign{text-align:right;color:#ffadd3;font-family:Georgia,serif;font-size:19px;margin-top:18px}
+@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.joke{background:#321329;border:1px solid #ff9acb44;padding:17px;border-radius:17px;margin:12px 0;text-align:left;font-size:13px;line-height:1.9;color:#f4d8e8}
+.joke b{color:#ffa8d0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.memory{background:#321329;border:1px solid #ff9acb55;border-radius:18px;padding:20px 8px}
+.memory span{font-size:30px}.memory p{font-size:11px;color:#f5c9df;margin-top:8px}
+.final{margin-top:30px;background:linear-gradient(145deg,#741044,#300d2c);border:1px solid #ff9acb88;border-radius:25px;padding:28px 18px;box-shadow:0 0 30px #ff299933}
+.final h2{font-family:Georgia,serif;color:#ffb4d7;font-size:29px;margin:15px 0}
+.final p{font-size:13px;line-height:2;color:#f6dce9}
+footer{padding:35px 5px;color:#d99ab9;font-size:11px}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<button class="music" id="musicBtn" onclick="toggleMusic()">♫ Play Music</button>
+
+<section class="screen" id="welcome">
+ <div class="tag">A SECRET SURPRISE FOR YOU</div>
+ <div class="heart">💗</div>
+ <p style="font-size:13px;color:#ffc5df">Someone made something special for</p>
+ <h1 class="name">Komal</h1>
+ <p class="sub">Aapke dost Rituraj ki taraf se ek chhota sa surprise 🎀</p>
+ <button class="btn" onclick="start()">Unlock Your Surprise 🔐</button>
+ <p style="font-size:10px;color:#bd83a2;margin-top:25px">Made with friendship & care</p>
+</section>
+
+<section class="screen hidden" id="giftScreen">
+ <div class="tag">YOUR SECRET GIFT</div>
+ <h2 class="heading">Something Special For You!</h2>
+ <p class="sub">Gift box par click karo aur apna surprise kholo.</p>
+ <div class="giftArea">
+  <div class="giftbox" id="gift" onclick="openGift()">🎁</div>
+  <p style="font-size:12px;color:#ffafd3">Tap to open ✨</p>
+ </div>
+ <div id="next" class="hidden">
+  <h2 class="heading">Surprise Unlocked! 💗</h2>
+  <button class="btn" onclick="reveal()">Enter Your Secret World 🌸</button>
+ </div>
+</section>
+
+<main class="main hidden" id="content">
+ <div class="tag">WELCOME TO YOUR LITTLE WORLD</div>
+ <h2 class="heading">Hey Komal! 🌷</h2>
+ <p class="intro">Kuch dost zindagi mein aate hain aur apni achhi si jagah bana lete hain. Ye chhoti si website unhi dosti ke naam.</p>
+
+ <div class="section">A SECRET LETTER 💌</div>
+ <div class="letter">
+  <h3>Dear Komal,</h3>
+  Shayad main har baar apni baat achhe se express nahi kar pata, lekin itna zaroor kehna chahta hoon ki aap ek bahut achhi dost ho.
+  <br><br>
+  Aapka samjhana, motivate karna aur funny baatein karna mere liye bahut special hai.
+  <br><br>
+  Main hamari dosti ki bahut respect karta hoon. Aap hamesha khush raho, apne dreams poore karo aur apni cute si bakbak kabhi band mat karna! 😂
+  <br><br>
+  Thank you for being a wonderful friend.
+  <div class="sign">Your friend, Rituraj 💗</div>
+ </div>
+
+ <div class="section">FUNNY FRIENDSHIP CORNER 😂</div>
+ <h2 class="heading">Dosti Ke Rules</h2>
+ <div class="joke">😂 <b>Rule 1:</b> Komal ki bakbak sunna compulsory hai. Chhutti allowed nahi!</div>
+ <div class="joke">🤭 <b>Rule 2:</b> "Kuch nahi" ka matlab hai conversation abhi baaki hai.</div>
+ <div class="joke">😎 <b>Rule 3:</b> Rituraj ke boring jokes par thoda hasna padega!</div>
+ <div class="joke">🎀 <b>Rule 4:</b> Khush rehna aur apna khayal rakhna compulsory hai.</div>
+
+ <div class="section">LITTLE THINGS MATTER</div>
+ <h2 class="heading">Our Friendship 💕</h2>
+
+ <div class="card">
+  <div class="icon">🌷</div><h3>Aapki Dosti</h3>
+  <p>Aapki dosti mere liye bahut special hai. Aapki baatein, hasi-mazaak aur chhoti-chhoti nok-jhok din ko achha bana deti hain.</p>
+ </div>
+ <div class="card">
+  <div class="icon">✨</div><h3>Aapki Achhi Baatein</h3>
+  <p>Aapka samjhana, motivate karna aur normal si baaton ko bhi funny bana dena ek bahut achhi quality hai.</p>
+ </div>
+ <div class="card">
+  <div class="icon">🦋</div><h3>Ek Chhoti Si Wish</h3>
+  <p>Aap hamesha khush raho, apne sapne poore karo aur zindagi mein bahut aage badho.</p>
+ </div>
+
+ <div class="section">OUR LITTLE MEMORY WALL</div>
+ <h2 class="heading">Friendship Moments</h2>
+ <div class="grid">
+  <div class="memory"><span>😂</span><p>Funny Conversations</p></div>
+  <div class="memory"><span>🌸</span><p>Sweet Friendship</p></div>
+  <div class="memory"><span>🫶</span><p>Support & Motivation</p></div>
+  <div class="memory"><span>🎀</span><p>Happy Moments</p></div>
+ </div>
+
+ <div class="final">
+  <div style="font-size:45px">💖</div>
+  <h2>One Last Surprise!</h2>
+  <p>Aapki life khushiyon se bhari rahe. Apne dreams achieve karo aur hamesha muskurate raho. Thank you for being a wonderful friend!</p>
+  <button class="btn" onclick="last()">Open Last Surprise 🎁</button>
+  <div id="lastMessage" class="hidden">
+   <div style="font-size:48px;margin:20px">🌷🦋✨</div>
+   <h2>Keep Smiling, Komal!</h2>
+   <p>Ye website chhoti si hai, lekin ismein dosti ki bahut saari achhi wishes hain. Aapki dosti hamesha special rahegi. 💗</p>
+   <div class="sign">— Rituraj</div>
+  </div>
+ </div>
+ <footer>Made with 💗 by Rituraj<br>A little website, a lot of friendship.</footer>
+</main>
+
+<script>
+function start(){
+ document.getElementById("welcome").classList.add("hidden");
+ document.getElementById("giftScreen").classList.remove("hidden");
+ window.scrollTo(0,0);
+}
+function openGift(){
+ let g=document.getElementById("gift");
+ g.style.transition=".7s";
+ g.style.transform="scale(0) rotate(25deg)";
+ g.style.opacity="0";
+ document.getElementById("next").classList.remove("hidden");
+}
+function reveal(){
+ document.getElementById("giftScreen").classList.add("hidden");
+ document.getElementById("content").classList.remove("hidden");
+ window.scrollTo(0,0);
+}
+function last(){
+ document.getElementById("lastMessage").classList.remove("hidden");
+}
+
+// Floating decorations
+const symbols=["💗","🌸","✨","💕","🌷","🦋","⭐"];
+for(let i=0;i<28;i++){
+ let p=document.createElement("div");
+ p.className="particle";
+ p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+ p.style.left=Math.random()*100+"%";
+ p.style.fontSize=(12+Math.random()*17)+"px";
+ p.style.animationDuration=(7+Math.random()*10)+"s";
+ p.style.animationDelay=Math.random()*8+"s";
+ document.getElementById("particles").appendChild(p);
+}
+
+// Original soft synthesized background melody
+let ctx=null,timer=null,playing=false,index=0;
+const notes=[523.25,659.25,783.99,659.25,587.33,698.46,783.99,698.46];
+function note(){
+ if(!ctx)return;
+ let osc=ctx.createOscillator(),gain=ctx.createGain();
+ osc.type="sine";
+ osc.frequency.value=notes[index++%notes.length];
+ gain.gain.setValueAtTime(.0001,ctx.currentTime);
+ gain.gain.exponentialRampToValueAtTime(.035,ctx.currentTime+.08);
+ gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.5);
+ osc.connect(gain);gain.connect(ctx.destination);
+ osc.start();osc.stop(ctx.currentTime+.55);
+}
+function toggleMusic(){
+ let btn=document.getElementById("musicBtn");
+ if(!playing){
+  let AudioCtx=window.AudioContext||window.webkitAudioContext;
+  if(!AudioCtx){btn.textContent="Music unavailable";return}
+  ctx=ctx||new AudioCtx();
+  if(ctx.state==="suspended")ctx.resume();
+  note();timer=setInterval(note,650);
+  playing=true;btn.textContent="♫ Pause Music";
+ }else{
+  clearInterval(timer);playing=false;btn.textContent="♫ Play Music";
+ }
+}
+</script>
+</body>
+</html>
